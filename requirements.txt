@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 absl-py==2.2.1
 accelerate==1.8.1
 alembic==1.16.1
@@ -191,3 +192,12 @@ wordcloud==1.9.4
 wrapt==1.17.2
 xgboost==3.0.2
 XlsxWriter==3.2.2
+=======
+streamlit
+PyMuPDF==1.23.5
+tensorflow-cpu==2.10.0
+nltk
+scikit-learn
+numpy
+pandas
+>>>>>>> 3a72a92d00562c8a381ede92ef6ddd85fac052bc
