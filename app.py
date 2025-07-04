@@ -1,5 +1,5 @@
 import streamlit as st
-import fitz  # PyMuPDF
+import fitz  
 import re
 import numpy as np
 import pickle
@@ -8,25 +8,19 @@ from nltk.corpus import stopwords
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import load_model
 
-# Download stopwords
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-# Load tokenizer (used during training)
 with open("tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
-# Load label encoder (used during training)
 with open("label_encoder.pkl", "rb") as f:
     le = pickle.load(f)
 
-# Load trained model
 model = load_model('resume_classifier_cnn.h5')
 
-# Max sequence length used during training
 max_len = 300
 
-# ✅ Preprocessing (same as training)
 def preprocess_text(text):
     text = text.lower()
     text = re.sub(r'\n', ' ', text)
@@ -36,7 +30,6 @@ def preprocess_text(text):
     words = [w for w in words if w not in stop_words]
     return ' '.join(words)
 
-# ✅ Prediction pipeline
 def predict_category(text):
     processed = preprocess_text(text)
     seq = tokenizer.texts_to_sequences([processed])
@@ -45,7 +38,6 @@ def predict_category(text):
     pred_label = le.inverse_transform([np.argmax(pred)])
     return pred_label[0]
 
-# ✅ Streamlit UI
 st.title("Resume Classifier")
 uploaded_file = st.file_uploader("Upload a Resume (PDF)", type="pdf")
 
