@@ -1,5 +1,6 @@
 streamlit
 PyMuPDF
+fitz
 tensorflow
 nltk
 scikit-learn
